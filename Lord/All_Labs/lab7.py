@@ -13,6 +13,12 @@ file2.close()
 ################################READ 2 Archivos de Text#############
 
 file1 = open("lab7a.txt", 'r')
+print (type(file1))
+
+
+edad = input('Coloca tu edad: ')
+
+
 text1 = file1.read()
 file1.close()
 
@@ -30,3 +36,10 @@ file_final.write(text1)
 file_final.write(text2)
 file_final.close()
 
+
+def ffff(a, b):
+    c = a * b
+    return c
+
+
+print(ffff(8, 7))

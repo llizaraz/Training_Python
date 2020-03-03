@@ -2,7 +2,7 @@ import os
 import json
 Datos = {'nombre' : 'N/A', 'edad' : 1, 'cursos': ['','',''] }
 
-file = open("lab6a.txt", "w")
+file = open("lab6a.txt", "w") # AQUI Estoy abriendo el archivo
 file.write("Primera línea" )
 file.write("Segunda línea")
 file.write(str(Datos))

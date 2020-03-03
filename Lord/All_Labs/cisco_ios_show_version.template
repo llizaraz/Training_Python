@@ -1,0 +1,19 @@
+Value Software (IOS Software|IOS-XE|IOS XR Software|VRP)
+Value VERSION (\d+\.\d+(.+).*)
+Value HOSTNAME (\S+)
+Value UPTIME (.+)
+Value RUNNING_IMAGE (\S+)
+Value HARDWARE ((WS-C\S+)|(\d+)|(CSR\S+))
+Value SERIAL (\S+)
+Value PLATFORM (\S+)
+Value CONFIG_REGISTER (\S+)
+
+Start
+  ^Cisco ${Software}
+  ^.*Software\s.+\),\sVersion\s${VERSION}, RELEASE.*
+  ^(\s|)${HOSTNAME}\s+uptime\s+is\s+${UPTIME}
+  ^[sS]ystem\s+image\s+file\s+is\s+".*flash:${RUNNING_IMAGE}"
+  ^[Cc]isco\s+${HARDWARE}.+
+  ^([Ss]ystem serial number\s+:|Processor board ID)\s+${SERIAL}
+  ^([Mm]odel number\s+:\s+|[Cc]isco\s+|Model number:\s+)${PLATFORM} -> Continue
+  ^[Cc]onfiguration\s+register\s+is\s+${CONFIG_REGISTER} -> Record

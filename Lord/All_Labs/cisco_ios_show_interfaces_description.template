@@ -1,0 +1,8 @@
+Value IF (\S+)
+Value STATUS (up|down|admin down|admin-down|deleted)
+Value PROTOCOL_STATUS (up|down|admin down|admin-down)
+Value DESCRIPTION (.+)
+
+Start
+  ^${IF}\s+${STATUS}\s+${PROTOCOL_STATUS}\s+${DESCRIPTION} -> Record
+  ^${IF}\s+${STATUS}\s+${PROTOCOL_STATUS} -> Record
