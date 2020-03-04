@@ -41,13 +41,11 @@ version = net_connect.send_command('show version')
 
 print (version)
 
-
 template = open('cisco_ios_show_version.template')
 re_table = textfsm.TextFSM(template)
 fsm_results = re_table.ParseText(version)
 
 print (fsm_results)
-
 
 # OpenpyXL is an external lib install using pip install openpyxl
 

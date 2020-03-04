@@ -1,4 +1,5 @@
 from netmiko import ConnectHandler
+import getpass
 import textfsm,os
 import openpyxl
 import pprint
@@ -8,17 +9,17 @@ import pprint
 #############################Valores de conexion al equipo ###################
 
 
-ipadd = 'ios-xe-mgmt-latest.cisco.com' # IP MGT
-port = '8181'                         # PORT SSH (By Default 22)
-username = 'developer'                #User de Red
-password = 'C1sco12345'               #Password
+ipadd = '127.0.0.1' # IP MGT
+port = '9999'                         # PORT SSH (By Default 22)
+username = ''                #User de Red
+password = getpass.getpass('Password:')               #Password
 global_delay = 3
 
 ###############################################################################
     #Aqui unifico los valores para enviarlos como argumento
 
 equipo = {
-    'device_type': 'cisco_ios',  #Tipo de equipo
+    'device_type': 'autodetect',  #Tipo de equipo
     'host':   ipadd,            # IP MGT
     'username': username,
     'password': password,
@@ -37,20 +38,5 @@ hostname = net_connect.find_prompt()
 
 print ("Hostname", hostname)
 
-cmd = net_connect.send_command('show version')
+cmd = net_connect.send_command('show version brief')
 print (cmd)
-
-file = open("Show_Version", "w") # AQUI Estoy abriendo el archivo
-file.write(cmd)
-file.close()
-
-comandos = ['show version','show inventory','show run','show hola']
-
-file = open('salida.txt', "w" )
-for lineas in comandos:
-    salida = net_connect.send_command(lineas)
-    file.write(salida)
-file.close()
-
-
-
