@@ -1,6 +1,8 @@
 import xlrd
 import pprint
 
+from netmiko import ConnectHandler
+
 # bbip_file = os.path.join(current_project_path, 'BBIP_RID.xlsx')
 bbip_file = 'read_excel.xlsx'
 bbip_book = xlrd.open_workbook(bbip_file)
@@ -30,7 +32,7 @@ for row_in_bbip_file in range(1, bbip_num_of_rows):
     print(device,host,port,device_type,username,password,global_delay_factor,command_1,command_2)
     commands.append(command_1)
     commands.append(command_2)
-    commands.append(command_3)
+    #commands.append(command_3)
     print(commands)
 
     credentials['device_type'] = device_type
@@ -40,3 +42,17 @@ for row_in_bbip_file in range(1, bbip_num_of_rows):
     credentials['password'] = password
     credentials['global_delay_factor'] = global_delay_factor
     pprint.pprint(credentials)
+
+    # Connect using SSH
+    print("Connecting : (" + host + ")\n")
+    net_connect = ConnectHandler(**credentials)  # envio a la funcion ConnectHandler el argumento **Equipo guardo la conexion en la variable net_connect
+    # Get Hostname from Session
+    hostname = net_connect.find_prompt()
+
+    print("Hostname", hostname)
+
+    cmd = net_connect.send_command('show version')
+    print(cmd)
+
+
+

@@ -19,9 +19,6 @@ from termcolor import colored
 
 
 
-
-
-
 ########################## START #####################
 
 version = ' 1.0.1'
@@ -51,13 +48,15 @@ jump = '200.14.205.9'
 
 user_jump = input('Por favor Ingrese el User del Hendrix: ? ')
 pass_jump = getpass.getpass('Por favor Ingrese el Password del Hendrix: ? :')
-#
+
 user_devices = input('Por favor Ingrese el User de los Equipos: ? ')
 pass_devices = getpass.getpass('Por favor Ingrese el Password de los Equipos: ? :')
 
+
+
 ##############################Lista de IP Equipos ##############################
 
-lista_devices = ['10.50.16.1','10.10.95.1','10.10.63.11','10.10.66.31','10.10.66.227', '10.10.66.8', '10.10.66.3', '']
+lista_devices = ['10.10.66.31','10.10.66.227', '10.10.66.8', '10.10.66.3', '']
 
 for remote_ip in lista_devices:
     # remote_ip = 10.10.63.11'
@@ -81,7 +80,7 @@ for remote_ip in lista_devices:
 ############Aqui unifico los valores para enviarlos como argumento#################
 
             equipo = {
-                'device_type': 'autodetect',  #Tipo de equipo
+                'device_type': 'cisco_ios',  #Tipo de equipo
                 'host':   '127.0.0.1',            # IP Local_Host_Tunneling
                 'username': user_devices,
                 'password': pass_devices,
